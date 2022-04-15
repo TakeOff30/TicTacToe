@@ -64,14 +64,13 @@ main{
     font-size: 6em;
     font-weight: bold;  
     text-align: center;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 800ms ease-in;
+    opacity: 0;
+    transition: opacity 500ms ease-in;
 
 }
 
 .square > p.anim{
-    transform: scaleX(1);
+    opacity: 1;
 }
 
 .menu{
