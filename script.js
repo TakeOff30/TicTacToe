@@ -2,9 +2,13 @@ const boardCont = document.querySelector(".container");
 const startButton = document.querySelector("#start");
 const menu = document.querySelector(".menu");
 const scoreBoard = document.querySelector(".scoreBoard");
+const restart = document.querySelector("#restart");
 let score1 = document.querySelector("#score1");
 let score2 = document.querySelector("#score2");
+
 let p1Turn = true;
+
+restart.addEventListener("click", endGame);
 
 let Game = (function (){
 
@@ -42,22 +46,22 @@ let Board = (function (){
             
         }
 
-        const squares = document.querySelectorAll(".square");
+        let squares = document.querySelectorAll(".square");
+        
 
         squares.forEach((square) => {
-            square.addEventListener("click", fill.bind(square), false);
+            square.addEventListener("click", () =>{
+                fill(square);
+                //verifyWinner();
+            });
         });
+        
 
     }
 
     function clear(){
         
-        
-        for (let i = 0; i < 9; i++) {
-
-            boardCont.removeChild(squares[i]);
-            
-        }
+        boardCont.textContent = "";
         squares = [];
         
     }
@@ -80,17 +84,33 @@ let Player = (player, mark) => {
 
 function fill(square){
 
-    if (p1Turn) {
-        square.textContent = player1.mark; 
-        p1Turn = false;
-    }else{
-        square.textContent = player2.mark; 
-        p1Turn = true;
+    if(square.textContent == ""){
+        if (p1Turn) {
+            const p = document.createElement("p");
+            square.appendChild(p);
+            p.textContent = player1.mark;
+            p.setAttribute("class", "anim");
+            p1Turn = false;
+        }else{
+            const p = document.createElement("p");
+            square.appendChild(p);
+            p.textContent = player2.mark;
+            p.setAttribute("class", "anim");
+            p1Turn = true;
+        }
     }
+    
     
 }
 
+// function verifyWinner(){
 
+
+//     if(){
+
+//     }
+
+// }
 
 const player1 = Player("1", "X");
 const player2 = Player("2", "O");
@@ -101,14 +121,13 @@ function startGame(){
 
     Game.start();
     Board.setup();
-    
-
+   
 }
 
 function endGame(){
 
-    match.end();
-    board.clear();
+    Game.end();
+    Board.clear();
 
 }
 

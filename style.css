@@ -9,6 +9,7 @@
     --second: rgb(156, 156, 156);
     --third: rgb(75, 75, 75);
     --black: rgb(26, 24, 24);
+    --shadow: 0px 9px 14px -1px rgba(0, 0, 0, 0.34);
 }
 
 *{
@@ -28,9 +29,12 @@ body{
 
 header{
     padding: 2rem;
-    box-shadow: 0px 9px 14px -1px rgba(0, 0, 0, 0.34);
+    box-shadow: var(--shadow);
 }
-
+header span{
+    display: flex;
+    justify-content: space-between;
+}
 main{
     display: flex;
     justify-content: center;
@@ -49,6 +53,25 @@ main{
     min-width: 200px;
     height: 200px;
     width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.square > p{
+    font-size: 6em;
+    font-weight: bold;  
+    text-align: center;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 800ms ease-in;
+
+}
+
+.square > p.anim{
+    transform: scaleX(1);
 }
 
 .menu{
@@ -68,6 +91,15 @@ main{
     align-items: center;
     width: 100%;
 }
+
+.scoreBoard span{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
 
 footer{
     padding: 1rem;
